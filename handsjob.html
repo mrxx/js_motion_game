@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Motion Sensing Game</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <script type="text/javascript" src="javascript/jquery.1.7.2.js"></script>
+        <script type="text/javascript" src="javascript/functions.js"></script>
+        <script type="text/javascript" src="game/level/level_1-20.js"></script>
+        <script type="text/javascript" src="game/game.item_data.js"></script>
+        <script type="text/javascript" src="game/game.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                    window.root_speed = 0;
+                    window.DEBUG = true;
+                    window.game = Game.createNew();
+                    game.ctrl="hand";
+                    game.init();
+                    $("body").one("game_data_loaded",function(e,message){
+                        window.intervalId = setInterval(function(){
+                            game.run();
+                            },10);
+                        });
+                    });
+            </script>
+    </head>
+    <body>
+	    <div class="container" style="width:1200px;">
+		    <div class="container-fluid" style="">
+			    <div class="row-fluid">
+				    <div class="span4" style="width:350px;background-color:#d3d7d4;padding:20px;height:100%;">
+					    <h3>About</h3> 
+					    <p>
+					    </p>
+              <div id="avatar">
+              </div>
+              <ol style="">
+                  <li>此demo只支持Chrome浏览器最新版本</li>
+                  <li>在明亮的环境中运行效果最好</li>
+                  <li>在高配置的机器上运行效果最好</li>
+
+                  <li>自定义地图 ：<a href="maptools.html" target="_blank">地图编辑</a></li>
+                  <li>Hack it <a href="https://github.com/mrxx/js_motion_game" target="_blank">https://github.com/mrxx/js_motion_game</a>
+                  <li>联系我[kids.lee at gmail.com]</li>
+
+                  </li>
+                  <ol>
+
+                        </div>
+                        <div class="span7" style="background-color:#f5f4f0;height:100%;">
+                            <div style="font-size:15px;height:50px;">
+                                <span id="game_level">Round: 1</span>
+                                <span id="game_mark">Mark:0</span>
+                                <span id="game_timemachine"></span>
+
+                            </div>
+
+					    <canvas id="canvas" width="600" height="500"></canvas>
+					    <img id="screenshot" src="" />
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+    </body>
+</html>

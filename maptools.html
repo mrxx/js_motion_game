@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Demo</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
+        <script type="text/javascript" src="javascript/jquery.1.7.2.js"></script>
+        <script type="text/javascript" src="javascript/functions.js"></script>
+        <script type="text/javascript" src="game/level/level_1-20.js"></script>
+        <script type="text/javascript" src="game/game.item_data.js"></script>
+        <script type="text/javascript" src="game/map_tools.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                    //begin draw smthing
+                    window.map_tools = Map_tools.createNew();
+                    $("body").one("game_data_loaded",function(e,message){
+                        console.log("game_data_loaded");
+                        map_tools.init();
+                        });
+                    });
+</script>
+    </head>
+    <body>
+        <div class="container" style="width:1400px;">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span6 well" style="width:420px;background-color:#fff;">
+                    <h3>修改数值</h3> 
+                    <div>
+                    <canvas  id="left_canvas" width="300" height="300" style="cursor:pointer;"></canvas>
+                    </div>
+                    <textarea class="input-xlarge" id="input_array" style="width:350px;font-size:15px;line-height:25px;" rows="15"></textarea>
+                    <br>
+                    <button id="make_data" class="btn  btn-primary" type="submit">
+                       生成地址
+                    </button>
+                    <button id="make_map" class="btn  btn-primary" type="submit">
+                       预览地图 
+                    </button>
+
+                </div>
+                <div class="span6 well">
+                    <h3>预览窗口</h3>
+                    <canvas id="canvas" width="600" height="600"></canvas>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

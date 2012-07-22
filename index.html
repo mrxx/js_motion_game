@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+	<title>Motion Sensing Game demo</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<script src="javascript/jquery.1.7.2.js"></script>
+  <script type="text/javascript" src="bootstrap/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="javascript/functions.js"></script>
+	<script type="text/javascript" src="game/level/level_1-20.js"></script>
+	<script type="text/javascript" src="game/game.item_data.js"></script>
+	<script type="text/javascript" src="game/game.js"></script>
+	<script type="text/javascript" src="motion/motion_head.js"></script>
+	<script type="text/javascript" >
+		$(function(){
+            window.DEBUG = getUrlParam('debug');
+            window.root_head_postion = 0;
+            window.root_speed = 0;
+            window.root_loaded = 0;
+            window.motion_head = Motion_head.createNew();
+            motion_head.init();
+            window.game = Game.createNew();
+            game.init();
+            $("body").one("game_data_loaded",function(e,message){
+                console.log("game_data_loaded");
+                intervalId = setInterval(function(){
+                    motion_head.run();
+                    if(root_loaded){
+                    game.run();
+                    }
+                    },10);
+			    });
+				});
+	</script>
+  <!--
+  :)
+  -->
+    </head>
+    <body>
+	    <div class="container" style="width:1200px;">
+		    <div class="container-fluid">
+			    <div class="row-fluid">
+				    <div class="span4"  style="width:350px;background-color:#d3d7d4;padding:10px;height:100%;">
+                <h3>About</h3> 
+                         <div>
+                    <ol style="">
+                        <li>此demo只支持Chrome浏览器最新版本</li>
+                        <li>在明亮的环境中运行效果最好</li>
+                        <li>在高配置的机器上运行效果最好</li>
+
+                        <li>自定义地图 ：<a href="maptools.html" target="_blank">maptools.html</a></li>
+                        <li>Hack it <a href="https://github.com/mrxx/js_motion_game" target="_blank">https://github.com/mrxx/js_motion_game</a>
+            <li>联系我[kids.lee at gmail.com]</li>
+
+</li>
+                    <ol>
+                                                        </div>
+                <div>
+                    <canvas id="mosaic_canvas" width="300px" height="240">
+                </div>
+                <div>
+                  <video id="basic-stream" class="videostream" width="300px" height="240px;" autoplay ></video>
+              </div>
+           				    </div>
+				    <div class="span7" style="height:100%;background-color:#f5f4f0;">
+                <div style="font-size:15px;height:50px;">
+                    <span id="game_level">Round: 1</span>
+                    <span id="game_mark">Mark:0</span>
+                    <span id="game_timemachine"></span>
+
+                </div>
+					    <canvas id="canvas" width="600" height="600"></canvas>
+					    <img id="screenshot" src="" />
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+      <!--down chrome-->
+      <div id="alert_Modal" class="modal hide fade" style="line-height:28px;width:700px;height:700px;">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3>体验提示</h3>
+          </div>
+          <div class="modal-body" style="">
+              <h4>1,请使用最新版本的Chrome浏览器</h4>
+              <p><a href="http://www.google.com/chrome/" target="_blank">Chrome 下载地址</a>
+              <br>
+              </p>
+                          <hr>
+              <h4>2,请修改浏览器配置</h4>
+              <p>
+              在地址栏输入 <span class="badge badge-success">chrome://flags </span>回车,搜索 <span class="badge badge-success">MediaStream</span>，找到后启用该项，并且<span class="badge badge-important">重启浏览器</span>，再次打开此页
+              </p>
+              <hr>
+              <h4>演示视频</h4>
+	      <p>
+	      <embed src="http://player.youku.com/player.php/sid/XNDMwNTI4Njgw/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+	      </p>
+                      </div>
+      </div>
+      <!--upload avatar-->
+      <div id="share_Modal" class="modal hide fade" style="line-height:28px;width:800px;">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3>分享排行</h3>
+          </div>
+          <div class="modal-body" style="max-height:700px;height:600px;" >
+              <p>
+              <form target="_blank" action="http://kaopulove.com/rank/game_rank_save" method="post">
+                  <table>
+                      <tr>
+                          <td width="350px">
+                              <div id="avatar">
+                              </div>
+                          </td>
+                          <td>
+                              <div id="share_text">
+                                  <h2>Mark:2012</h2>
+                                  <h2>Round:10</h2>
+                                  <input type="hidden" id="share_mark" name="share_mark" value="0">
+                                  <input type="hidden" id="share_round" name="share_round" value="0">
+                                  <input type="hidden" id="share_avatar" name="share_avatar" value="">
+
+                                  <textarea class="input-xlarge" name="share_content" style="width:350px;" id="share_text" rows="5"></textarea>
+                                  <br>
+                                  <a class="btn"  href="javascript:motion_head.snapshot();">拍照</a>
+                                  <input type="submit" class="btn" value="提交" >
+                              </div>
+                          </td>
+                          </tr>
+                          <tr>
+                          <td></td>
+                          <td></td>
+                              </tr>
+                      </table>
+                  </form>
+              </p>
+          </div>
+      </div>
+
+    </body>
+</html>
