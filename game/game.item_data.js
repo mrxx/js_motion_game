@@ -64,7 +64,7 @@ var Item_data = {
                 };
                 bg_img.onload = function(){
                   var tmp_ctx = $('<canvas display=none width=500 height=300></canvas>')[0].getContext("2d");
-                  tmp_ctx.clearRect(0,0);
+                  tmp_ctx.clearRect(0,0,0,0);
                   tmp_ctx.drawImage(bg_img,0,0,500,300,0,0,500,300);
                   item_data.level[now_level].bg_img = tmp_ctx.getImageData(0,0,500,300);                    
                   $('body').trigger("tmp_data_loaded",["next_level"]);
@@ -78,7 +78,7 @@ var Item_data = {
                 img.onload = function()
                 {
                   var tmp_ctx = $('<canvas display=none width=500 height=300></canvas>')[0].getContext("2d");
-                  tmp_ctx.clearRect(0,0);
+                  tmp_ctx.clearRect(0,0,0,0);
                   tmp_ctx.drawImage(img,0,0,500,300,0,0,500,300);
                   item_data.gameover_img = tmp_ctx.getImageData(0,0,500,300);                    
                   $('body').trigger("tmp_data_loaded",["game_over_img"]);
@@ -111,13 +111,13 @@ var Item_data = {
                 item_data.slider_img = tmp_ctx.getImageData(0,0,400,50);                    
               };
               var make_pad_data = function(){
-                tmp_ctx.clearRect(0,0);
+                tmp_ctx.clearRect(0,0,0,0);
                 tmp_ctx.drawImage(box_img,0,475,300,40,0,0,150,20);
                 item_data.pad = tmp_ctx.getImageData(0,0,150,20);                    
               };
               var make_yoshi = function(){    
 		      var tmp_ctx = $('<canvas display=none width=480 height=40></canvas>')[0].getContext("2d");
-		      tmp_ctx.clearRect(0,0);
+		      tmp_ctx.clearRect(0,0,0,0);
 		      tmp_ctx.drawImage(box_img,0,650,480,40,0,0,480,40);
 		      for(i=0;i<4;i++)                
 		      {
